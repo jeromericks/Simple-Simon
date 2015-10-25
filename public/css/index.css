@@ -40,3 +40,11 @@ main{
 	opacity: 0.5;
 	border: 1px solid black;
 }
+
+.color-btn:focus,.color-btn:active {
+   outline: none;
+}
+
+.active {
+	opacity: 1;
+}
