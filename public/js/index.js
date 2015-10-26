@@ -1,75 +1,144 @@
-$(document).ready(function() {
-	"use strict";
-
-	var random_array = [];
-	var user_array = [];
-
-
-	$("#red").attr('value', 0);
-	$("#yellow").attr('value', 1);
-	$("#orange").attr('value', 2);
-	$("#blue").attr('value', 3);
-
-	
-	$(".color-btn").click(function() {
-		$(this).css('opacity', '1');
-		user_array.push($(this).val());
-		console.log(user_array);
-	});
-
-
-	function getRandomIntInclusive(min, max) {
-  		return (Math.floor(Math.random() * (max - min + 1)) + min).toString();
+"use strict";
+(function ()
+{
+	var record = 0;
+	var simon = [];
+	var userG = [];
+	function randomInt (min, max) 
+	{
+		return Math.floor(Math.random() * (max - min)) + min;
 	}
-
-	function getRound() {
-		var i = 0;
-		$('.start-btn').click(function() {
-			i++;
-			$(".round").html("<h4>Round: " + i + "</h4>");
-		});
-	}
-
-	function initReset() {
-		$('.reset-btn').click(function() {
-			random_array = [];
-			user_array = [];
-			getRound();
-		});
-	}
-
-	function animateSimon() {
-		for(var i = 0; i < random_array.length; i++) {
-			random_array[i];
-			if(random_array[i] == 0) {
-				$("#red").addClass("active");
-				setTimeout(function() {
-		  			$("#red").removeClass("active");
-				}, 500);
+	function check (sequence, user)
+	{
+		// compare the user's input with the correct sequence
+		for (var i = 0; i < user.length; i++)
+		{
+			if (sequence[i] != user[i])
+			{
+				console.log("false");
+				return(false);
 			}
 		}
+		console.log("true");
+		return(true);
 	}
-
-	function startSimon() {
-		getRound();
-		initReset();
-		$('.start-btn').click(function() {
-			random_array.push(getRandomIntInclusive(0, 3));
-			console.log(random_array);
-			animateSimon();
-			if(random_array.length >= 1) {
-				if(random_array[user_array.length - 1] != user_array[user_array.length - 1]) {
-					user_array = [];
-					random_array = [];
-					console.log("FAILURE");
-				}
+	function addToSimon ()
+	{
+		simon.push(randomInt(1,5));
+		console.log(simon);
+	}
+	function userInput ()
+	{
+		var val = this.getAttribute("data-val");
+		userG.push(val);
+		console.log(userG);
+		game(simon, userG);
+	}
+	function addUserEvent()
+	{
+		var userIn = document.getElementsByClassName("userInput");
+		for (var i = 0; i < userIn.length; i++)
+		{
+			userIn[i].addEventListener("click", userInput, false);
+			$(userIn[i]).hover(hoverOn, hoverOff);
+		}
+	}
+	function hoverOn ()
+	{
+		$(this).css("opacity", ".75");
+	}
+	function hoverOff ()
+	{
+		$(this).css("opacity", "0.5");
+	}
+	function showSequence (sequence)
+	{
+		var i = 0;
+		function showNextIn ()
+		{
+			if (i < sequence.length)
+			{
+				$("#" + sequence[i]).animate(
+				{
+					opacity: "1"
+				}, 250).delay(500).animate(
+				{
+					opacity: "0.5"
+				}, 250).promise().done(function()
+				{
+					i++;
+					showNextIn();
+				});
 			}
-
-			// if(random_array == user_array){
-			// 	console.log("success");
-			// }
-		});
+			else
+			{
+				addUserEvent();
+				return;
+			}
+		}
+		showNextIn();
 	}
-	startSimon();
-
-});
+	function onRound (sequence)
+	{
+		document.getElementById("level").innerHTML = "Level: " + sequence.length;
+		if (sequence.length > record)
+		{
+			record = sequence.length;
+			document.getElementById("record").innerHTML = "record: " + record;
+		}
+	}
+	function killUserInput ()
+	{
+		var userIn = document.getElementsByClassName("input");
+		for (var i = 0; i < userIn.length; i++)
+		{
+			userIn[i].removeEventListener("click", userInput, false);
+			$(userIn[i]).off("mouseenter mouseleave");
+			$(userIn[i]).css("opacity", "0.5");
+		}
+	}
+	function nextRound ()
+	{
+		killUserInput();
+		userG = [];
+		console.log("user array cleared");
+		$("#popup").animate(
+			{
+				opacity: "show"
+			},100).delay(1000).animate(
+			{
+				opacity: "hide"
+			},100).promise().done(function()
+			{
+				onRound(simon);
+				addToSimon();
+				showSequence(simon);
+			});
+	}
+	function game (sequence, user)
+	{
+		var right = check(simon, user);
+		if (right == false)
+		{
+			// end game
+			killUserInput();
+			userG = [];
+			simon = [];
+			onRound(simon)
+			console.log("arrays cleared")
+			alert("GAME OVER.");
+		}
+		else if (sequence.length == user.length && right == true)
+		{
+			//progress to next round
+			nextRound();
+		}
+	}
+	function start ()
+	{
+		addToSimon();
+		showSequence(simon);
+		onRound(simon);
+	}
+	document.getElementById("start").addEventListener("click", start, false);
+})();

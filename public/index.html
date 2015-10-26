@@ -7,22 +7,25 @@
 	<link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-	
-	<h1>Simple Simon is Simple...Simon</h1>
-
-	<main>
-		<button class="color-btn" id="red"></button>
-		<button class="color-btn" id="yellow"></button>
-		<button class="color-btn" id="orange"></button>
-		<button class="color-btn" id="blue"></button>
-	</main>
-
-	<button class="start-btn">Start</button>
-	<button class="reset-btn">Reset</button>
-    <div class="round"></div>
-
+	<div id="main">
+		<div id="pad">
+			<button id="1" class="userInput red" data-val="1"></button>
+			<button id="2" class="userInput blue" data-val="2"></button>
+			<br>
+			<button id="3" class="userInput green" data-val="3"></button>
+			<button id="4" class="userInput yellow" data-val="4"></button>
+		</div>
+		<div id="info">
+			<button id="start">start</button>
+			<br>
+			<span id="level">Level: 0</span>
+			<br>
+			<span id="record">Record: 0</span>
+			<br>
+			<span id="popup">Correct!</span>
+		</div>
+	</div>
 	<script src="/js/jquery.js"></script>
 	<script src="/js/index.js"></script>
-
 </body>
 </html>

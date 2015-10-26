@@ -1,50 +1,76 @@
-body {
-	text-align: center;
-	margin: auto;
+body
+{
+	color: #FFFFFF;
+	background-color: #FFFFFF;
 }
-
-main{
-	width: 30%;
-	margin: auto;
-	margin-bottom: 20px;
+#pad
+{
+	width: 640px;
+	height: 640px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #000000;
+	padding: 16px;
+	border-radius: 50%;
 }
-
-#yellow, #blue {
-	right: 4px;
-	position: relative;
+.userInput
+{
+	width: 302px;
+	height: 302px;
+	margin: 8px;
+	opacity: .5;
 }
-
-#red {
-	background-color: red;
-	border-radius: 200px 0 0 0;
-}
-
-#yellow {
-	background-color: yellow;
-	border-radius: 0 200px 0 0;
-}
-
-#orange {
-	background-color: orange;
-	border-radius: 0 0 0 200px;
-}
-
-#blue {
+.blue
+{
 	background-color: blue;
-	border-radius: 0 0 200px 0;
+	border-radius: 0 302px 0 0;
+	
 }
+.red
+{
+	background-color: red;
+	border-radius: 302px 0 0 0;
+	
+}
+.green
+{
+	background-color: green;
+	border-radius: 0 0 0 302px;
+	
+}
+.yellow
+{
+	background-color: yellow;
+	border-radius: 0 0 302px 0;
 
-.color-btn {
+}
+#info
+{
+	border: 1px solid black;
 	width: 200px;
 	height: 200px;
-	opacity: 0.5;
-	border: 1px solid black;
+	float: left;
+	position: absolute;
+	top: 16px;
+	border-radius: 5%;
+	padding: 16px;
 }
-
-.color-btn:focus,.color-btn:active {
-   outline: none;
+#popup
+{
+	display: none;
+	font-size: 64px;
 }
-
-.active {
-	opacity: 1;
+#start
+{
+	height: 32px;
+	width: 64px;
+	font-size: 16px;
+}
+#level, #record 
+{
+	color: black;
+}
+button:active, button:focus
+{
+	outline: none;
 }
