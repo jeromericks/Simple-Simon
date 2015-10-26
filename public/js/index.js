@@ -13,10 +13,10 @@
 		// compare the user's input with the correct sequence
 		for (var i = 0; i < user.length; i++) {
 			if (sequence[i] != user[i]) {
-				return (false);
+				return false;
 			}
 		}
-		return (true);
+		return true;
 	}
 
 	function addToSimon() {
@@ -38,7 +38,7 @@
 	}
 
 	function hoverOn() {
-		$(this).css("opacity", ".75");
+		$(this).css("opacity", "1");
 	}
 
 	function hoverOff() {
@@ -86,12 +86,7 @@
 	function nextRound() {
 		killUserInput();
 		userGuess = [];
-		console.log("user array cleared");
-		$("#popup").animate({
-				opacity: "show"
-			},100).delay(1000).animate({
-				opacity: "hide"
-			},100).promise().done(function() {
+		$("#popup").delay(1000).promise().done(function() {
 				onRound(simon);
 				addToSimon();
 				showSequence(simon);
