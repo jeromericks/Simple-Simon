@@ -43,7 +43,7 @@ body {
 #info {
 	border: 1px solid black;
 	width: 200px;
-	height: 200px;
+	height: 115px;
 	float: left;
 	position: absolute;
 	top: 16px;
@@ -51,19 +51,21 @@ body {
 	padding: 16px;
 }
 
-#popup {
-	display: none;
-	font-size: 64px;
-}
-
 #start {
 	height: 32px;
 	width: 64px;
 	font-size: 16px;
+	position: absolute;
+	top: 105px;
+	left: 150px;
+	border-radius: 15%;
 }
 
 #level, #record {
 	color: black;
+	position: relative;
+	bottom: 20px;
+	font-size: 35px;
 }
 
 button:active, button:focus {
