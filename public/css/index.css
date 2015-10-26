@@ -1,6 +1,6 @@
 body {
 	color: #FFFFFF;
-	background-color: #FFFFFF;
+	background-image: url(/img/crossword.png);
 }
 
 #pad {
@@ -21,22 +21,22 @@ body {
 }
 
 .blue {
-	background-color: blue;
+	background-color: #0000FF;
 	border-radius: 0 302px 0 0;
 }
 
 .red {
-	background-color: red;
+	background-color: #FF0000;
 	border-radius: 302px 0 0 0;
 }
 
 .green {
-	background-color: green;
+	background-color: #008000;
 	border-radius: 0 0 0 302px;
 }
 
 .yellow {
-	background-color: yellow;
+	background-color: #FFFF00;
 	border-radius: 0 0 302px 0;
 }
 
@@ -49,6 +49,7 @@ body {
 	top: 16px;
 	border-radius: 5%;
 	padding: 16px;
+	background-color: #FFFFFF;
 }
 
 #start {

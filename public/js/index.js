@@ -86,7 +86,7 @@
 	function nextRound() {
 		killUserInput();
 		userGuess = [];
-		$("#popup").delay(1000).promise().done(function() {
+		$("#record").delay(1000).promise().done(function() {
 				onRound(simon);
 				addToSimon();
 				showSequence(simon);
