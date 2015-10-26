@@ -1,4 +1,4 @@
-(function () {
+$(document).ready(function() {
 	"use strict";
 
 	var record = 0;
@@ -115,5 +115,5 @@
 		onRound(simon);
 	}
 
-	document.getElementById("start").addEventListener("click", start, false);
-})();
+	$('#start').on("click", start);
+});
