@@ -3,7 +3,7 @@
 
 	var record = 0;
 	var simon = [];
-	var userG = [];
+	var userGuess = [];
 
 	function randomInt(min, max) {
 		return Math.floor(Math.random() * (max - min)) + min;
@@ -25,8 +25,8 @@
 
 	function userInput() {
 		var val = $(this).attr("data-val");
-		userG.push(val);
-		game(simon, userG);
+		userGuess.push(val);
+		game(simon, userGuess);
 	}
 
 	function addUserEvent() {
@@ -85,7 +85,7 @@
 
 	function nextRound() {
 		killUserInput();
-		userG = [];
+		userGuess = [];
 		console.log("user array cleared");
 		$("#popup").animate({
 				opacity: "show"
@@ -103,7 +103,7 @@
 		if (right == false) {
 			// end game
 			killUserInput();
-			userG = [];
+			userGuess = [];
 			simon = [];
 			onRound(simon);
 			alert("GAME OVER.");
