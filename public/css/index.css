@@ -1,10 +1,9 @@
-body
-{
+body {
 	color: #FFFFFF;
 	background-color: #FFFFFF;
 }
-#pad
-{
+
+#pad {
 	width: 640px;
 	height: 640px;
 	margin-left: auto;
@@ -13,39 +12,35 @@ body
 	padding: 16px;
 	border-radius: 50%;
 }
-.userInput
-{
+
+.userInput {
 	width: 302px;
 	height: 302px;
 	margin: 8px;
 	opacity: .5;
 }
-.blue
-{
+
+.blue {
 	background-color: blue;
 	border-radius: 0 302px 0 0;
-	
 }
-.red
-{
+
+.red {
 	background-color: red;
 	border-radius: 302px 0 0 0;
-	
 }
-.green
-{
+
+.green {
 	background-color: green;
 	border-radius: 0 0 0 302px;
-	
 }
-.yellow
-{
+
+.yellow {
 	background-color: yellow;
 	border-radius: 0 0 302px 0;
-
 }
-#info
-{
+
+#info {
 	border: 1px solid black;
 	width: 200px;
 	height: 200px;
@@ -55,22 +50,22 @@ body
 	border-radius: 5%;
 	padding: 16px;
 }
-#popup
-{
+
+#popup {
 	display: none;
 	font-size: 64px;
 }
-#start
-{
+
+#start {
 	height: 32px;
 	width: 64px;
 	font-size: 16px;
 }
-#level, #record 
-{
+
+#level, #record {
 	color: black;
 }
-button:active, button:focus
-{
+
+button:active, button:focus {
 	outline: none;
 }

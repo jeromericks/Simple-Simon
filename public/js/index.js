@@ -1,20 +1,15 @@
-"use strict";
-(function ()
-{
+(function () {
+	"use strict";
 	var record = 0;
 	var simon = [];
 	var userG = [];
-	function randomInt (min, max) 
-	{
+	function randomInt(min, max) {
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
-	function check (sequence, user)
-	{
+	function check(sequence, user) {
 		// compare the user's input with the correct sequence
-		for (var i = 0; i < user.length; i++)
-		{
-			if (sequence[i] != user[i])
-			{
+		for (var i = 0; i < user.length; i++) {
+			if (sequence[i] != user[i]) {
 				console.log("false");
 				return(false);
 			}
@@ -22,104 +17,81 @@
 		console.log("true");
 		return(true);
 	}
-	function addToSimon ()
-	{
+	function addToSimon() {
 		simon.push(randomInt(1,5));
 		console.log(simon);
 	}
-	function userInput ()
-	{
+	function userInput() {
 		var val = this.getAttribute("data-val");
 		userG.push(val);
 		console.log(userG);
 		game(simon, userG);
 	}
-	function addUserEvent()
-	{
-		var userIn = document.getElementsByClassName("userInput");
-		for (var i = 0; i < userIn.length; i++)
-		{
+	function addUserEvent() {
+		var userIn = $(".userInput");
+		for (var i = 0; i < userIn.length; i++) {
 			userIn[i].addEventListener("click", userInput, false);
 			$(userIn[i]).hover(hoverOn, hoverOff);
 		}
 	}
-	function hoverOn ()
-	{
+	function hoverOn() {
 		$(this).css("opacity", ".75");
 	}
-	function hoverOff ()
-	{
+	function hoverOff() {
 		$(this).css("opacity", "0.5");
 	}
-	function showSequence (sequence)
-	{
+	function showSequence(sequence) {
 		var i = 0;
-		function showNextIn ()
-		{
-			if (i < sequence.length)
-			{
-				$("#" + sequence[i]).animate(
-				{
+		function showNextIn() {
+			if (i < sequence.length) {
+				$("#" + sequence[i]).animate({
 					opacity: "1"
-				}, 250).delay(500).animate(
-				{
+				}, 250).delay(500).animate({
 					opacity: "0.5"
-				}, 250).promise().done(function()
-				{
+				}, 250).promise().done(function() {
 					i++;
 					showNextIn();
 				});
 			}
-			else
-			{
+			else {
 				addUserEvent();
 				return;
 			}
 		}
 		showNextIn();
 	}
-	function onRound (sequence)
-	{
-		document.getElementById("level").innerHTML = "Level: " + sequence.length;
-		if (sequence.length > record)
-		{
+	function onRound(sequence) {
+		$("#level").html("Level: " + sequence.length);
+		if (sequence.length > record) {
 			record = sequence.length;
 			document.getElementById("record").innerHTML = "record: " + record;
 		}
 	}
-	function killUserInput ()
-	{
+	function killUserInput() {
 		var userIn = document.getElementsByClassName("input");
-		for (var i = 0; i < userIn.length; i++)
-		{
+		for (var i = 0; i < userIn.length; i++) {
 			userIn[i].removeEventListener("click", userInput, false);
 			$(userIn[i]).off("mouseenter mouseleave");
 			$(userIn[i]).css("opacity", "0.5");
 		}
 	}
-	function nextRound ()
-	{
+	function nextRound() {
 		killUserInput();
 		userG = [];
 		console.log("user array cleared");
-		$("#popup").animate(
-			{
+		$("#popup").animate({
 				opacity: "show"
-			},100).delay(1000).animate(
-			{
+			},100).delay(1000).animate({
 				opacity: "hide"
-			},100).promise().done(function()
-			{
+			},100).promise().done(function() {
 				onRound(simon);
 				addToSimon();
 				showSequence(simon);
 			});
 	}
-	function game (sequence, user)
-	{
+	function game(sequence, user) {
 		var right = check(simon, user);
-		if (right == false)
-		{
+		if (right == false) {
 			// end game
 			killUserInput();
 			userG = [];
@@ -128,14 +100,12 @@
 			console.log("arrays cleared")
 			alert("GAME OVER.");
 		}
-		else if (sequence.length == user.length && right == true)
-		{
+		else if (sequence.length == user.length && right == true) {
 			//progress to next round
 			nextRound();
 		}
 	}
-	function start ()
-	{
+	function start() {
 		addToSimon();
 		showSequence(simon);
 		onRound(simon);
