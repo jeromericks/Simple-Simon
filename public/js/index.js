@@ -9,24 +9,22 @@ $(document).ready(function() {
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
 
-	function check(sequence, user) {
-		// compare the user's input with the correct sequence
+	function checkValue(sequence, user) {
 		for (var i = 0; i < user.length; i++) {
-			if (sequence[i] != user[i]) {
-				return false;
+			if (sequence[i] == user[i]) {
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	function addToSimon() {
-		simon.push(randomInt(1,5));
+		simon.push(randomInt(0, 3));
 	}
 
 	function userInput() {
-		var val = $(this).attr("data-val");
-		userGuess.push(val);
-		game(simon, userGuess);
+		userGuess.push($(this).attr("data-val"));
+		initGame(simon, userGuess);
 	}
 
 	function addUserEvent() {
@@ -60,7 +58,6 @@ $(document).ready(function() {
 			}
 			else {
 				addUserEvent();
-				return;
 			}
 		}
 		showNextIn();
@@ -74,46 +71,37 @@ $(document).ready(function() {
 		}
 	}
 
-	function killUserInput() {
-		var userIn = $(".input");
-		for (var i = 0; i < userIn.length; i++) {
-			userIn[i].removeEventListener("click", userInput, false);
-			$(userIn[i]).off("mouseenter mouseleave");
-			$(userIn[i]).css("opacity", "0.5");
-		}
-	}
-
 	function nextRound() {
-		killUserInput();
 		userGuess = [];
-		$("#record").delay(1000).promise().done(function() {
-				onRound(simon);
-				addToSimon();
-				showSequence(simon);
-			});
+		$("#start").delay(1000).promise().done(function() {
+			onRound(simon);
+			addToSimon();
+			showSequence(simon);
+		});
 	}
 
-	function game(sequence, user) {
-		var right = check(simon, user);
+	function initGame(sequence, user) {
+		var right = checkValue(simon, userGuess);
 		if (right == false) {
-			// end game
-			killUserInput();
 			userGuess = [];
 			simon = [];
 			onRound(simon);
-			alert("GAME OVER.");
+			alert("Game Over");
 		}
 		else if (sequence.length == user.length && right == true) {
-			//progress to next round
 			nextRound();
 		}
 	}
 
-	function start() {
+	function startSimon() {
 		addToSimon();
 		showSequence(simon);
 		onRound(simon);
 	}
 
-	$('#start').on("click", start);
+	$('#start').click(function() {
+		startSimon();
+		$('#start').attr("disabled", "true");
+	});
+
 });

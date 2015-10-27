@@ -70,10 +70,10 @@ body {
 #level, #record {
 	color: black;
 	position: relative;
-	bottom: 20px;
+	bottom: 10px;
 	font-size: 35px;
 }
 
-button:active, button:focus {
+button {
 	outline: none;
 }
