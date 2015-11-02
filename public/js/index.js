@@ -104,8 +104,6 @@ $(document).ready(function() {
 		$('#start').attr("disabled", "true");
 	});
 
-
-
 	// $('.squares').click(function() {
 	// 	userChoice = $(this).attr('data-num')
 	// });
@@ -142,6 +140,5 @@ $(document).ready(function() {
 
 	// 	}, 1000);
 	// }
-
 
 });
