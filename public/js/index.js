@@ -104,41 +104,4 @@ $(document).ready(function() {
 		$('#start').attr("disabled", "true");
 	});
 
-	// $('.squares').click(function() {
-	// 	userChoice = $(this).attr('data-num')
-	// });
-
-	// var simonSequence = [];
-
-	// function compareChoice() {
-
-	// 	var i = 0;
-	// 	// if the current choice is correct AND we're done iterating simon's array
-	// 	if(simonSequence[i] == userChoice && i >= simonSequence.length) {
-	// 		// now it's simon's turn
-	// 		moveSimon();
-	// 	} else if (simonSequence[i] == userChoice) {
-	// 		i -= 1;
-	// 		$('#score').text(i);
-	// 	} else {
-	// 		gameOver();
-	// 	}
-	// }
-
-	// function gameOver() {
-	// 	window.reload;
-	// }
-
-	// function animateSequence() {
-	// 	var intervalId = setInterval(function() {
-	// 		if(i >= simonSequence.length) {
-	// 			clearInterval(intervalId);
-	// 		}
-	// 		animate(simonSequence[i]);
-
-	// 		i += 1;
-
-	// 	}, 1000);
-	// }
-
 });
